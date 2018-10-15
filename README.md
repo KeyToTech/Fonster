@@ -36,7 +36,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Fonster'
+    pod 'Fonster', :git=>'https://github.com/KeyToTech/Fonster.git', :branch => 'master'
 end
 ```
 
