@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "Fonster"
   spec.version      = "0.0.1"
-  spec.summary      = "A short description of Fonster."
+  spec.summary      = "Dynamically registers fonts downloaded from URL."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,9 +25,12 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-                   DESC
 
-  spec.homepage     = "http://EXAMPLE/Fonster"
+  "IOS framework for dynamically loading and registering fonts downloaded from URL"
+
+                      DESC
+
+  spec.homepage     = "https://github.com/KeyToTech/Fonster"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -38,7 +41,7 @@ Pod::Spec.new do |spec|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  spec.license      = "MIT (example)"
+  spec.license      = "MIT"
   # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -55,7 +58,7 @@ Pod::Spec.new do |spec|
   spec.author             = { "Bogdan Ustyak" => "bogdan.ustyak@gmail.com" }
   # Or just: spec.author    = "Bogdan Ustyak"
   # spec.authors            = { "Bogdan Ustyak" => "bogdan.ustyak@gmail.com" }
-  # spec.social_media_url   = "https://twitter.com/Bogdan Ustyak"
+  spec.social_media_url   = "https://twitter.com/BogdanUstyak"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -63,8 +66,8 @@ Pod::Spec.new do |spec|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # spec.platform     = :ios
-  # spec.platform     = :ios, "5.0"
+  spec.platform     = :ios
+  spec.platform     = :ios, "9.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
@@ -79,9 +82,8 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "http://EXAMPLE/Fonster.git", :tag => "#{spec.version}" }
-
-
+  spec.source       = { :git => "https://github.com/KeyToTech/Fonster.git", :branch => "master",  :tag => "#{spec.version}" }
+  
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  CocoaPods is smart about how it includes source code. For source files
@@ -90,7 +92,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "Classes", "Classes/**/*.{h,m}"
+  spec.source_files  = "Fonster/**/*.swift"
   spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
