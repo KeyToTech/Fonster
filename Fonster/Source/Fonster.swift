@@ -40,7 +40,7 @@ public class Fonster {
     /// - parameter fontUrl:            Url of the font file to be downloaded.
     /// - parameter fontFileName:       The name of the file for storing locally.
     ///
-    init(fontUrl: String, fontFileName: String) {
+    public init(fontUrl: String, fontFileName: String) {
         self.fontUrl = fontUrl
         self.fontFileName = fontFileName.fileName()
         self.fontExtension = fontFileName.fileExtension()
