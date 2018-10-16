@@ -7,7 +7,9 @@ Fonster is IOS framework for dynamically loading and registering fonts downloade
 
 # Usage
 Loading the font from URL and setting it to the label.
-```
+```swift
+ import Fonster
+
  Fonster(
             fontUrl: "https://site.com/some_font_file_to_load",
             fontFileName: "FileNameInLocalDir.ttf"
