@@ -58,7 +58,7 @@ class FontRegister {
         var error: Unmanaged<CFError>?
         let success = CTFontManagerRegisterGraphicsFont(font, &error)
         if !success {
-            print("Error loading font. Font is possibly already registered.")
+            print("Error loading font. Font is possibly already registered. \(error.debugDescription)")
         }
         return success
     }

@@ -27,6 +27,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Dynamically registering font being downloaded from URL
 public class Fonster {
@@ -34,36 +35,58 @@ public class Fonster {
     private let fontUrl: String
     private let fontFileName: String
     private let fontExtension: String
+    private let fontFamily: String
     
     /// Creates an instance with the specified `fontUrl` and local `fontFileName`.
     ///
     /// - parameter fontUrl:            Url of the font file to be downloaded.
     /// - parameter fontFileName:       The name of the file for storing locally.
     ///
-    public init(fontUrl: String, fontFileName: String) {
+    public init(fontUrl: String, fontFileName: String, fontFamily: String) {
         self.fontUrl = fontUrl
         self.fontFileName = fontFileName.fileName()
         self.fontExtension = fontFileName.fileExtension()
+        self.fontFamily = fontFamily
     }
     
     /// Registering font being downloaded from URL.
     ///
     /// - parameter completion: Completion handler of registration. Result is dispatching on Main Queue
     ///
-    public func register(completion: @escaping (_ registered: Bool) -> ()) {
-        if let fontURL = URL(string: self.fontUrl) {
-            let fileDestinationUrl = LocalDocuments(
+    func register(completion: @escaping (_ registered: Bool) -> ()) {
+        if !isRegistered(family: self.fontFamily) {
+            if let fontURL = URL(string: self.fontUrl) {
+                let fileDestinationUrl = LocalDocuments(
                     fileName: fontFileName,
                     fileExtension: fontExtension
-                ).destination()
-            NetworkFile().load(url: fontURL,
-                               to: fileDestinationUrl) {
-                                let fontRegisterResult = FontRegister(fontPath: fileDestinationUrl).register()
-                                print("Font registration result=\(fontRegisterResult)")
-                                DispatchQueue.main.async {
-                                    completion(fontRegisterResult)
-                                }
+                    ).destination()
+                NetworkFile().load(url: fontURL,
+                                   to: fileDestinationUrl) {
+                                    let fontRegisterResult = FontRegister(fontPath: fileDestinationUrl).register()
+                                    print("Font registration result=\(fontRegisterResult)")
+                                    DispatchQueue.main.async {
+                                        completion(fontRegisterResult)
+                                    }
+                }
             }
+        } else {
+            completion(true)
         }
+    }
+    
+    /// Check if font is registered alread
+    ///
+    /// - parameter family: Font family to check
+    ///
+    /// - returns:  true if font is registered, false otherwise.
+    ///
+    private func isRegistered(family: String) -> Bool {
+        var registered = false
+        if UIFont.familyNames.filter({ (familia) -> Bool in
+            familia == family
+        }).first != nil {
+            registered = true
+        }
+        return registered
     }
 }
