@@ -53,7 +53,7 @@ public class Fonster {
     ///
     /// - parameter completion: Completion handler of registration. Result is dispatching on Main Queue
     ///
-    func register(completion: @escaping (_ registered: Bool) -> ()) {
+    public func register(completion: @escaping (_ registered: Bool) -> ()) {
         if !isRegistered(family: self.fontFamily) {
             if let fontURL = URL(string: self.fontUrl) {
                 let fileDestinationUrl = LocalDocuments(
