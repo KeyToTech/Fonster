@@ -54,7 +54,8 @@ public class Fonster {
     /// - parameter completion: Completion handler of registration. Result is dispatching on Main Queue
     ///
     public func register(completion: @escaping (_ registered: Bool) -> ()) {
-        if !isRegistered(family: self.fontFamily) {
+       // if !isRegistered(family: self.fontFamily) {
+        if !exists(file: self.fontFileName) {
             if let fontURL = URL(string: self.fontUrl) {
                 let fileDestinationUrl = LocalDocuments(
                     fileName: fontFileName,
@@ -89,4 +90,24 @@ public class Fonster {
         }
         return registered
     }
+    
+    private func exists(file: String) -> Bool {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: path)
+        if let pathComponent = url.appendingPathComponent(file) {
+            let filePath = pathComponent.path
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: filePath) {
+                print("FILE AVAILABLE")
+                return true
+            } else {
+                print("FILE NOT AVAILABLE")
+                return false
+            }
+        } else {
+            print("FILE PATH NOT AVAILABLE")
+            return false
+        }
+    }
+    
 }
