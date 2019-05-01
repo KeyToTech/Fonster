@@ -1,3 +1,5 @@
+[![Hits-of-Code](https://hitsofcode.com/github/KeyToTech/Fonster)](https://hitsofcode.com/view/github/KeyToTech/Fonster)
+
 # Fonster
 Fonster is IOS framework for dynamically loading and registering fonts downloaded from URL written in Swift.
 
